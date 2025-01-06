@@ -1,0 +1,46 @@
+\section{Implementation}
+\label{sec:implementation}
+
+For the development of this work, two main data sources are considered that need to be integrated through the platform: the IMMP platform database and the model. The IFC models already registered, in turn, would be hosted in a second database referred to here as the "CMMatosinhos database". Within the databases, and considering the functionalities to be implemented (Table 1), three types of element are essential to the platform's objectives: locations, equipment and requests. The first type of element represents spatial assets, being the locations (or spaces) that make up the buildings managed by CMMatosinhos, essential to the spatial location of the equipment. Equipment, in turn, represents any physical asset that is part of the inventory of CMMatosinhos (vehicles, chairs, ladders, etc). Finally, requests represent the request for an operation action to be carried out, and are associated with the other types of element (equipment and location). Figure 2 shows the flow of information between the different databases, their elements and the platform components (frontend and backend). The main components of the information flow in Figure 2 are the IMMP identifiers and CMMatosinhos identifiers. The identifiers are unique keys for identifying the elements within the IMMP database and the CMMatosinhos inventory, respectively. These identifiers function as the interaction key capable of associating the same asset from the different sources (IMMP and CMMatosinhos inventory). The process of implementing the web platform is described below, including defining the identifiers for the IMMP database, asset identifiers within the CMMatosinhos inventory, developing the information requirements for existing building models and other aspects of the platform's development.
+
+\hl{FIGURA 2}
+
+\subsection{Definition of unique identifiers}
+\label{subsec:identifiers}
+\hl{acho que definition não é o melhor nome}
+
+The unique identifiers were defined by analysing the IMMP database. Firstly, IMMP identifiers were defined, containing keys capable of uniquely identifying an element within this database. For the CMMatosinhos identifiers, the analysis was carried out using the IMMP database, but now to find attributes containing information relating to the identification of assets from the manager's organisation. Figure 3 shows the structure of the assets within the IMMP database, including the endpoints for accessing the information shown, attributes relevant to the development of the platform, the relationship between attributes of different elements and unique identifiers.
+
+\hl{FIGURA 3}
+
+\emph{IMMP identifier}
+Within the IMMP database, sites are organised hierarchically and have the attribute "local\_id" as their unique identifier. On the other hand, registered assets (ELEMENT) are classified into two categories, EQUIPMENT and LOCAL. In this case, the locations included as elements are those at the lowest level of the registered hierarchy and are equivalent to individual spaces (room, changing room, ...). All elements are uniquely identified by the "element\_id" attribute. The numbering contained in these attributes ("local\_id" and "element\_id") is generated automatically by the IMMP, and does not correspond to the CMMatosinhos inventory. Therefore, the "local\_id" and "element\_id" attributes are considered to be the IMMP identifiers for locations and equipment, respectively. Finally, when analysing the elements of type request, named as failure within the IMMP database, we focused on those considered "open," e.g. that still require any kind of action. As this is not a physical asset, in addition to the attributes of the element itself, its relationship with equipment and locations was also analysed. Requests are uniquely identified using the "failure\_id" attribute (IMMP identifier), and contain the "local\_id" attribute capable of identifying the location to which the request is associated. On the other hand, information about its association with a device can only be accessed from the relationships of the device type elements, where the "failure\_id" numbers can be visualised.
+
+\emph{CMMatosinhos identifier}
+Requests do not have a CMMatosinhos identifier as they do not represent physical assets. As for locations, the value of the "full\_code" attribute represents the nomenclature used by CMMatosinhos to identify spaces hierarchically, and represents a unique code for each location. As for equipment, the value of the "nfc\_code" attribute was selected as a potential unique identifier. However, not all equipment contains associated NFC codes, which implies that it could not be used as the identification key for this type of asset. In a second analysis, it was decided to use the "code" attribute for this purpose. Within the CMMatosinhos inventory organisation, the value of this attribute is filled in using coding specific to the type of equipment (chair, vehicle, etc.). However, the end user clarified that this coding might not be unique for some specific types of equipment. Finally, it was concluded that if equipment had the same code, it would not be in the same space. Therefore, the combination of the attributes "code" of the active piece of equipment and "full\_code" of the location where it is located associated within the model, was defined as the CMMatosinhos identifier for the equipment. Finally, using the necessary level of information methodology (section 3.2), these identifiers were organised as properties that should be associated with the model elements. In Table 2, the term "Code" was used to represent these identifiers.
+
+\subsection{Level of information need}
+\label{subsec:loin}
+
+In order to define the level of information required, it was considered that the model should allow visualisation of the building and assets to be managed, and contain only alphanumeric information relating to general asset information and that required for integration with the IMMP database (CMMatosinhos identifiers). As for the elements to be modelled (Table 2), three main groups of objects were defined: architecture, equipment and locations.
+
+\hl{TABELA 2}
+
+In this case, the architecture would serve the purpose of visualisation and only the geometric information aspects of the necessary level of information were required for this group. Of the three types of elements analysed in the previous subsection, applications were excluded as their visualisation was not required. For premises and equipment, geometric and alphanumeric information requirements were defined. As for the building as a whole (Table 3), since its geometry was already covered by the previous objects, only alphanumeric information requirements were defined. Non-applicable aspects are not shown in the tables.
+
+\hl{TABELA 3}
+
+\subsection{Platform development}
+\label{subsec:platform}
+
+The development of the platform, the tests carried out and the meetings with the end user took place iteratively and the platform's capabilities were gradually expanded. During development, it was possible to identify the limitations of the IMMP API and improve the information exchange processes. One of the optimisations implemented was the mapping between all the objects in the model (equipment or sites) and their respective open requests (open failures) (visible in Figure 2 in the backend). This mapping has been programmed to occur automatically as soon as the building is selected, and generates a direct association between the unique identifiers of the elements ("element\_id" and "local\_id") and the associated "failures\_id". This mapping also includes information such as the degree of prioritisation and the status of the request (failure). The decision was made because this information needs to be quickly visualised by the user and updated when they move between selected elements, which ultimately improves the end-user experience.
+
+Figure 3 shows the visualisation of the integration platform accessible by the end user. The screenshot is of the management area, with visualisation enabled by floor and after selecting an element. The management area includes an upper section (Figure 4 a) with data relating to the building's identification and the possibility of editing the visualisation mode: whether by floor or entire building, whether all elements or only those with open requests. The next section (Figure 4 b) displays a warning about the presence and number of open requests associated with the building. The side menu (Figure 4 c) relates to asset information and is inserted into the user interface when a piece of equipment or location is selected. In this menu, it is possible to view information identifying the selected asset, the number of open requests associated with the asset, access the redirection to the asset's page within IMMP and the creation of orders associated directly with the asset, which are automatically registered within the IMMP platform.
+
+\hl{FIGURA 4}
+
+
+
+
+
+   

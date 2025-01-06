@@ -1,0 +1,34 @@
+\ProvidesPackage{preamble}
+
+% Terms and Acronyms 
+\usepackage[acronym]{glossaries}
+% Import list
+\input{Acronyms}
+
+% Mathematical symbols
+\usepackage{amssymb}
+
+% Theorem environments
+% \usepackage{amsthm}
+
+% All cross-referenced elements become hyperlinked.
+\usepackage{hyperref}
+
+% Clever Reference
+\usepackage{cleveref}
+
+% Adds line numbers.
+\usepackage{lineno}
+
+% Highlighting 
+\usepackage{color,soul}
+\DeclareRobustCommand{\hlred}[1]{{\sethlcolor{red}\hl{#1}}}
+
+% Solve accentuation in \affiliation
+\usepackage[T1]{fontenc}
+
+% add a forced line break inside a table cell
+\usepackage{makecell}
+
+\usepackage{multirow}
+
