@@ -50,7 +50,7 @@ Facility Management (FM); Building Information Modelling (BIM); Interoperability
 
 Facility Management (FM) ensures the functionality, comfort, and safety of facilities in the built environment \cite{IFMA2023} and is rapidly growing within the construction sector \cite{Pinti2022}. As facility managers increasingly adopt the BIM methodology to enhance operations \cite{Marocco2021}, the complexity of assets in public and large buildings presents unique challenges \cite{Pinti2022}. Despite the various advantages found in the literature, there is still resistance to adopting BIM for asset operation \cite{Durdyev2022}, and managers are faced with buildings already in the operational phase but not yet managed with the support of the BIM methodology.
 
-For broader adoption of BIM in FM, it is essential to enhance knowledge of its information management processes in line with ISO 19650 series guidelines and to adapt management systems for emerging technologies \cite{Durdyev2022}. The use of computerized management platforms like Intelligent Maintenance Management Platform (IMMP) for operating built assets is already widespread \cite{Marocco2021, Siccardi2023}. However, it is necessary to employ platforms capable of integrating various data sources, particularly information models \cite{Al-Kasasbeh2021}. These models, which include three-dimensional representations of assets \cite{19650-1}, should be prepared to integrate with management platforms used by operational managers.
+For broader adoption of BIM in FM, it is essential to enhance knowledge of its information management processes in line with ISO 19650 series guidelines and to adapt management systems for emerging technologies \cite{Durdyev2022}. The use of computerized management platforms like Intelligent Maintenance Management Platform (IMMP) for operating built assets is already widespread \cite{Marocco2021, Siccardi2023}. However, it is necessary to employ platforms capable of integrating various data sources, particularly information models \cite{Al-Kasasbeh2021}. These models, which include three-dimensional representations of assets, should be prepared to integrate with management platforms used by operational managers.
 
 From this context, a collaboration between Matosinhos City Hall (CMMatosinhos) in Portugal and the University of Minho (UMinho) aimed to enhance municipal asset management by integrating BIM methodology into the Infraspeak management platform already used by CMMatosinhos. While Infraspeak allows users to access functionalities via a web interface and API, it lacks the capability to visualize managed buildings and assets. The project aimed to develop a web platform that integrates the IMMP database with three-dimensional visualization, enabling users to consult, edit, and add information about the assets.  This collaboration will enable CMMatosinhos to integrate geometric information into decision-making. For example, visually mapping equipment needing maintenance will help establish more efficient action routes. The platform integrates two key data sources: the IMMP database with essential asset operation information and the information model containing geometrical data for buildings and assets.
 
@@ -145,7 +145,7 @@ As for the elements to be modelled, three main groups of objects were defined: a
 \begin{table*}[!htb]
     \renewcommand{\arraystretch}{2}
     \centering
-    \caption{Level of information need for architectural elements, equipment and locations}
+    \caption{Level of information need for the building}
     \label{tab_loin_building}
     \begin{tabular}{p{5.1cm}|p{4.3cm}|p{4.3cm}}
     \hline
@@ -173,11 +173,11 @@ As for the elements to be modelled, three main groups of objects were defined: a
 \subsection{Platform development}
 \label{subsec:platform}
 
-Figure \ref{fig_plataforma} shows screenshots of the web platform. Screenshot A shows the interaction page accessible by the user of manager type, with the selection of a chair on the ground floor of the town hall's central warehouse. The interaction page includes an upper section (\ref{fig_plataforma} B) presenting the building's identification and the possibility of editing the visualisation mode, whether by floor or entire building, whether all elements or only those with open requests. The next section (\ref{fig_plataforma} C) warns about the presence and number of open requests associated with the building. The side menu (\ref{fig_plataforma} D) displays information about the selected asset, and it appears on the user interface when a piece of equipment or space is selected. In this menu, it is possible to view information identifying the selected asset and the number of associated open requests. In addition, two buttons allow the redirection to the asset's page within the IMMP and the creation of requests associated directly with the asset, automatically registered within the IMMP platform.
+Figure \ref{fig_plataforma} shows screenshots of the web platform. Screenshot A shows the interaction page accessible by the user of manager type, with the selection of a chair on the ground floor of the town hall's central warehouse. The interaction page includes an upper section (figure \ref{fig_plataforma} B) presenting the building's identification and the possibility of editing the visualisation mode, whether by floor or entire building, whether all elements or only those with open requests. The next section (figure \ref{fig_plataforma} C) warns about the presence and number of open requests associated with the building. The side menu (figure \ref{fig_plataforma} D) displays information about the selected asset, and it appears on the user interface when a piece of equipment or space is selected. In this menu, it is possible to view information identifying the selected asset and the number of associated open requests. In addition, two buttons allow the redirection to the asset's page within the IMMP and the creation of requests (figure \ref{fig_plataforma} E) associated directly with the asset, automatically registered within the IMMP platform.
 
 \begin{figure*}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{Images/plataforma_parcial.png}
+    \includegraphics[width=\textwidth]{Images/plataforma.png}
     \caption{Web platform}
     \label{fig_plataforma}
 \end{figure*}
